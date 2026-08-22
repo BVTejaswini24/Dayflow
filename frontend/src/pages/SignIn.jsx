@@ -242,29 +242,6 @@ export default function SignIn() {
               Sign Up
             </Link>
           </p>
-
-          {/* DEMO */}
-          <div
-            className="demo-hint"
-            style={{
-              marginTop: "24px",
-              background: "#eef2ff",
-              padding: "16px",
-              borderRadius: "14px",
-              color: "#4338ca",
-              fontSize: "14px",
-            }}
-          >
-            <strong>Demo accounts</strong>
-
-            <div style={{ marginTop: "10px" }}>
-              Admin — admin@hrms.com / Admin@123
-            </div>
-
-            <div style={{ marginTop: "6px" }}>
-              Employee — priya.sharma@hrms.com / Welcome@123
-            </div>
-          </div>
         </form>
       </div>
     </div>

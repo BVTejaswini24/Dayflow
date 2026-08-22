@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import api from "../api";
 import { useAuth } from "../context/AuthContext.jsx";
 import StatusBadge from "../components/StatusBadge.jsx";
+import WeeklyAttendanceTimeline from "../components/WeeklyAttendanceTimeline.jsx";
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -235,6 +236,11 @@ function MyAttendance() {
           </tbody>
         </table>
       </div>
+
+      <div className="section-header">
+        <h2>Detailed Weekly Timeline</h2>
+      </div>
+      <WeeklyAttendanceTimeline records={records} todayRec={today} />
     </div>
   );
 }
