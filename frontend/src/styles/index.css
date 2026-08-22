@@ -999,3 +999,673 @@ input:focus, select:focus, textarea:focus {
     bottom: 70px;
   }
 }
+
+/* ---------- Work Schedule Component ---------- */
+.work-schedule-card {
+  margin-top: 20px;
+}
+
+.ws-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.ws-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ws-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ws-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.ws-heading {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.ws-range {
+  font-size: 12px;
+}
+
+.ws-shift-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.ws-shift-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+.ws-shift-time {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* Scrollable wrapper on small screens */
+.ws-timeline-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+}
+
+.ws-timeline {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  min-width: 560px; /* prevents squishing below this */
+  position: relative;
+}
+
+/* Each day column */
+.ws-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px 12px;
+  position: relative;
+}
+
+/* Highlight today */
+.ws-day--today .ws-day-num {
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+}
+
+.ws-day--today .ws-day-name {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Track row: dot + horizontal line */
+.ws-track {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 20px;
+  margin-bottom: 4px;
+}
+
+.ws-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 2px currentColor;
+  flex-shrink: 0;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+/* Connector line extends right from dot to next column */
+.ws-line {
+  position: absolute;
+  left: 50%;
+  right: -50%;
+  top: 50%;
+  height: 2px;
+  background: var(--border);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+/* Dot colors per status */
+.ws-dot--present    { color: var(--green);    background: var(--green); }
+.ws-dot--absent     { color: var(--red);      background: var(--red); }
+.ws-dot--leave      { color: var(--blue);     background: var(--blue); }
+.ws-dot--half-day   { color: var(--amber);    background: var(--amber); }
+.ws-dot--weekend    { color: var(--amber);    background: var(--amber-soft); }
+.ws-dot--scheduled  { color: var(--border);   background: var(--border); }
+
+.ws-day-name {
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ws-day-num {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Status chips */
+.ws-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ws-chip--present  { background: var(--green-soft);  color: var(--green); }
+.ws-chip--absent   { background: var(--red-soft);    color: var(--red); }
+.ws-chip--leave    { background: var(--blue-soft);   color: var(--blue); }
+.ws-chip--half-day { background: var(--amber-soft);  color: var(--amber); }
+.ws-chip--weekend  { background: var(--amber-soft);  color: var(--amber); }
+.ws-chip--scheduled { background: var(--bg);         color: var(--ink-soft); border: 1px solid var(--border); }
+
+.ws-hours {
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .ws-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ws-shift-badge {
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Greeting Banner ---------- */
+.gb-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Daytime — warm accent gradient */
+.gb-banner--day {
+  background: linear-gradient(120deg, var(--navy-900) 0%, #2A356E 60%, #3B3080 100%);
+}
+
+/* Night — deeper cooler gradient */
+.gb-banner--night {
+  background: linear-gradient(120deg, #0E1330 0%, #1A1D40 60%, #0D1B3E 100%);
+}
+
+/* Subtle texture overlay */
+.gb-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Left ── */
+.gb-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.gb-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.gb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.gb-text {
+  min-width: 0;
+}
+
+.gb-greeting {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gb-sub {
+  font-size: 13px;
+  color: #C6C9EE;
+}
+
+/* ── Right ── */
+.gb-right {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.gb-illustration {
+  width: 72px;
+  height: 72px;
+  display: block;
+}
+
+/* Sun ray animation */
+.gb-illustration--sun line {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: gbRayPulse 2.8s ease-in-out infinite;
+}
+.gb-illustration--sun line:nth-child(odd) {
+  animation-delay: 0.35s;
+}
+
+@keyframes gbRayPulse {
+  0%, 100% { opacity: 0.6; transform: scaleY(0.85); }
+  50%       { opacity: 1;   transform: scaleY(1.15); }
+}
+
+/* Moon star twinkle */
+.gb-illustration--moon circle {
+  animation: gbStarTwinkle 3s ease-in-out infinite;
+}
+.gb-illustration--moon circle:nth-child(2) { animation-delay: 0.8s; }
+.gb-illustration--moon circle:nth-child(3) { animation-delay: 1.6s; }
+
+@keyframes gbStarTwinkle {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+@media (max-width: 860px) {
+  .gb-banner {
+    padding: 18px 20px;
+  }
+  .gb-greeting {
+    font-size: 16px;
+  }
+  .gb-illustration {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 500px) {
+  .gb-right {
+    display: none; /* hide illustration on very small screens to prevent overflow */
+  }
+  .gb-greeting {
+    white-space: normal;
+  }
+}
+
+/* ---------- Weekly Attendance Timeline ---------- */
+
+.wat-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.wat-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.wat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.wat-icon svg { width: 20px; height: 20px; }
+
+.wat-title {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.wat-schedule-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.wat-schedule-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+.wat-schedule-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+/* ── Column label row ── */
+.wat-col-labels {
+  display: flex;
+  align-items: center;
+  padding: 8px 22px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  gap: 0;
+}
+.wat-col-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+/* ── Day rows container ── */
+.wat-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Single day row ── */
+.wat-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.wat-row:last-child {
+  border-bottom: none;
+}
+.wat-row:hover {
+  background: var(--bg);
+}
+.wat-row--today {
+  background: var(--accent-soft);
+}
+.wat-row--today:hover {
+  background: #e8eafc;
+}
+
+/* ── Column widths (flex proportions) ── */
+.wat-day-col   { width: 72px;  flex-shrink: 0; }
+.wat-time-col  { width: 100px; flex-shrink: 0; }
+.wat-track-col { flex: 1; min-width: 0; padding: 0 12px; }
+.wat-hours-col { width: 96px;  flex-shrink: 0; text-align: right; }
+
+/* ── Day label column ── */
+.wat-day-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.wat-day-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.wat-day-num {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+.wat-day-num--today {
+  color: var(--accent);
+}
+.wat-today-pill {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--accent);
+  color: white;
+  padding: 1px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+/* ── Time columns ── */
+.wat-time-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.wat-time-col--in  { align-items: flex-end;  }
+.wat-time-col--out { align-items: flex-start; }
+
+.wat-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.wat-time--empty { color: var(--ink-soft); }
+
+.wat-late {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+/* ── Timeline track ── */
+.wat-track {
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+/* Subtle shaded zone = the official 9–18 window (full width of track) */
+.wat-schedule-zone {
+  position: absolute;
+  inset: 6px 0;
+  background: #f0f2fb;
+  border-radius: 4px;
+  border: 1px solid #e4e6f0;
+}
+
+/* Worked bar */
+.wat-bar {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  border-radius: 4px;
+  z-index: 1;
+}
+.wat-bar--present   { background: var(--green); opacity: 0.85; }
+.wat-bar--half-day  { background: var(--amber); opacity: 0.8; }
+.wat-bar--absent    { background: var(--red);   opacity: 0.5; }
+
+/* End-point dots */
+.wat-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--card);
+  z-index: 2;
+  transform: translateX(-50%);
+}
+.wat-dot--present   { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+.wat-dot--half-day  { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+.wat-dot--absent    { background: var(--red);   box-shadow: 0 0 0 2px var(--red);   }
+.wat-dot--weekend   { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+.wat-dot--leave     { background: var(--blue);  box-shadow: 0 0 0 2px var(--blue);  }
+.wat-dot--scheduled { background: var(--border);box-shadow: 0 0 0 2px #ccc;         }
+
+/* Centred label for weekend / absent / leave / scheduled */
+.wat-track-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* ── Status chips (inside track) ── */
+.wat-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.wat-chip--present   { background: var(--green-soft); color: var(--green); }
+.wat-chip--half      { background: var(--amber-soft); color: var(--amber); }
+.wat-chip--absent    { background: var(--red-soft);   color: var(--red);   }
+.wat-chip--weekend   { background: var(--amber-soft); color: var(--amber); }
+.wat-chip--leave     { background: var(--blue-soft);  color: var(--blue);  }
+.wat-chip--scheduled { background: var(--bg);         color: var(--ink-soft); border: 1px solid var(--border); }
+
+/* ── Hours column ── */
+.wat-hours {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.wat-hours--worked { color: var(--green); }
+
+.wat-in-progress {
+  display: block;
+  font-size: 10px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ── Time scale ── */
+.wat-scale-wrap {
+  display: flex;
+  align-items: center;
+  padding: 8px 22px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* Offset matches: day-col + time-col--in + track padding-left */
+.wat-scale-offset {
+  width: calc(72px + 100px + 12px);
+  flex-shrink: 0;
+}
+/* Tail matches: time-col--out + hours-col + track padding-right */
+.wat-scale-tail {
+  width: calc(100px + 96px + 12px);
+  flex-shrink: 0;
+}
+.wat-scale {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  min-width: 0;
+}
+.wat-scale-tick {
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .wat-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wat-schedule-badge { align-items: flex-start; }
+  .wat-col-labels     { display: none; }
+
+  /* Wrap rows into a scrollable horizontal block */
+  .wat-rows,
+  .wat-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .wat-row {
+    min-width: 680px;
+  }
+  .wat-scale-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 680px;
+  }
+}

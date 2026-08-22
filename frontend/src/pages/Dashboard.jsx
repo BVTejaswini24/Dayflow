@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import { useAuth } from '../context/AuthContext.jsx';
 import StatusBadge from '../components/StatusBadge.jsx';
+import WorkSchedule from '../components/WorkSchedule.jsx';
+import GreetingBanner from '../components/GreetingBanner.jsx';
 
 function initials(name = '') {
   return name.split(' ').filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase()).join('');
@@ -416,6 +418,9 @@ function EmployeeQuickAccess() {
           </table>
         </div>
       </div>
+
+      <GreetingBanner />
+      <WorkSchedule />
     </>
   );
 }
