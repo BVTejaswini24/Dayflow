@@ -119,7 +119,7 @@ The project was developed using **Git and GitHub**, with team members working on
 
 ### 👥 Team Members
 
-- Tejaswini — Full-Stack Development, API Integration & GitHub Integration
+-  B.V Tejaswini — Full-Stack Development, API Integration & GitHub Integration
 - Sweeny Marina dsouza— Frontend Development & UI/UX
 - Gaghan A.M — Backend Development & API Integration
 - Rakesh B.K — Testing, Debugging & Feature Development
