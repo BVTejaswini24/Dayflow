@@ -120,8 +120,8 @@ The project was developed using **Git and GitHub**, with team members working on
 ### 👥 Team Members
 
 -  B.V Tejaswini — Full-Stack Development, API Integration & GitHub Integration
-- Sweeny Marina dsouza— Frontend Development & UI/UX
-- Gaghan A.M — Backend Development & API Integration
+- Sweeny Marina dsouza— Backend Development & API Integration
+- Gaghan A.M — Frontend development & UI/UX
 - Rakesh B.K — Testing, Debugging & Feature Development
 
 ### 🔄 Collaboration Workflow
