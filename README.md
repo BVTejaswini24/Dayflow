@@ -114,7 +114,8 @@ DayFlow-HRMS/
 
 DayFlow HRMS was developed as a collaborative **4-member hackathon project**.
 
-The project was developed using **Git and GitHub**, with team members working on different features through separate branches and collaborating throughout the development process.
+The project was developed using **Git and GitHub**, with team members working on different features through separate branches and collaborating 
+throughout the development process.
 
 ### 👥 Team Members
 
