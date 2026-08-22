@@ -107,3 +107,36 @@ DayFlow-HRMS/
 │
 ├── .gitignore
 └── package-lock.json
+
+---
+
+## 🤝 Team Collaboration
+
+DayFlow HRMS was developed as a collaborative **4-member hackathon project**.
+
+The project was developed using **Git and GitHub**, with team members working on different features through separate branches and collaborating throughout the development process.
+
+### 👥 Team Members
+
+- Tejaswini — Full-Stack Development, API Integration & GitHub Integration
+- Sweeny Marina dsouza— Frontend Development & UI/UX
+- Gaghan A.M — Backend Development & API Integration
+- Rakesh B.K — Testing, Debugging & Feature Development
+
+### 🔄 Collaboration Workflow
+
+```text
+4 Team Members
+      ↓
+Feature Branches
+      ↓
+Development
+      ↓
+Testing & Bug Fixing
+      ↓
+Git Commits
+      ↓
+Branch Integration
+      ↓
+DayFlow HRMS
+
